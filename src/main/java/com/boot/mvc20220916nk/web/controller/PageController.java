@@ -1,6 +1,5 @@
 package com.boot.mvc20220916nk.web.controller;
 
-import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,7 +28,7 @@ public class PageController {
         model.addAttribute("age", "23");
         model.addAttribute("phone", "010-1212-3434");
         model.addAttribute("address", "부산시 동래구");
-        return "myInfo";
+        return "myinfo";
     }
 
     // * 클라이언트 사이드 랜더링 ; 검색엔진 노출이 안됨! (해결방법 있긴 해요 .. ㅎ) app.js  에서 실행이 됨.
