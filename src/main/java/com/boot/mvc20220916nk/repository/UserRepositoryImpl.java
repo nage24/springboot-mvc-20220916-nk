@@ -1,9 +1,6 @@
 package com.boot.mvc20220916nk.repository;
 
 import com.boot.mvc20220916nk.domain.User;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -12,22 +9,20 @@ import java.util.List;
 @Repository("a") // @Component // 이 클래스를 이름 a로 IoC에 저장을 하라~
 public class UserRepositoryImpl implements UserRepository{ // ctrl + I 로 implements methods
 
-    @Qualifier
-    @Autowired
     private final List<User> userData;
 
     public UserRepositoryImpl() { // 생성자  alt insert
         userData = new ArrayList<User>();
 
-        for(int i = 0; i < 9; i++) {
+        for(int i = 0; i < 5; i++) {
             int index = i + 1;
 
             User user = User.builder()
                     .user_code(index)
-                    .user_id("ng9")
+                    .user_id("ng" + index)
                     .user_name("1111")
-                    .user_password("갱나")
-                    .user_email("ng9@")
+                    .user_password("갱나" + index)
+                    .user_email("ng" + index + "@")
                     .build();
 
             userData.add(user);
@@ -37,7 +32,22 @@ public class UserRepositoryImpl implements UserRepository{ // ctrl + I 로 imple
 
     @Override
     public int save(User user) {
-        return 0;
+        try {
+            int maxCode = 0;
+            for(User u : userData){
+                if(u.getUser_code() > maxCode) {
+                    maxCode = u.getUser_code();
+                }
+            }
+            maxCode++;
+
+            user.setUser_code(maxCode);
+
+            userData.add(user);
+        }catch (Exception e) {
+            return 0;
+        }
+        return 1;
     }
 
     @Override
@@ -72,7 +82,7 @@ public class UserRepositoryImpl implements UserRepository{ // ctrl + I 로 imple
     }
 
     @Override
-    public int remove(String userCode) {
+    public int remove(int userCode) {
         return 0;
     }
 }

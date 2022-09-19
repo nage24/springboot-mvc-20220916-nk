@@ -5,6 +5,5 @@ public class TestMain {
         Test test = new Test(new DITestImpl2()); // <- Test Class 코드는 안 고쳐도 됨.
 
         test.show();
-
     }
 }

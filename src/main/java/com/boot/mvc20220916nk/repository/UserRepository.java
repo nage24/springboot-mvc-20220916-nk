@@ -7,5 +7,5 @@ public interface UserRepository {
     public User findUserByUserId(String userId);
     public User findUserByUserCode(int userCode);
     public int modify(User user);
-    public int remove(String userCode);
+    public int remove(int userCode);
 }
