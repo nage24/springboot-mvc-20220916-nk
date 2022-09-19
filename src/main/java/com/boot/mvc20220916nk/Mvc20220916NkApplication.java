@@ -8,7 +8,6 @@ public class Mvc20220916NkApplication {
 
 	public static void main(String[] args) {
 
-
 		SpringApplication.run(Mvc20220916NkApplication.class, args);
 
 	}
