@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.time.LocalDateTime;
 
-@Controller
+@Controller // 웹 띄워주기 용 ..
 public class PageController {
 
     @GetMapping({"/", "/index"}) // 둘 중 아무거나로 들어와도 이 메소드가 실행이 되는거
