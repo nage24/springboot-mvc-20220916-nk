@@ -1,12 +1,8 @@
 package com.boot.mvc20220916nk.web.controller.api;
 
-import Student.web.dto.StudentResDto;
+import Student.web.dto.StudentRespDto;
 import com.boot.mvc20220916nk.web.dto.ResponseDataDto;
-import com.fasterxml.jackson.databind.util.JSONPObject;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -37,7 +33,6 @@ public class ResponseTestController {
     // @ResponseBody
     @GetMapping("/api/v1/data2")
     public ResponseDataDto getData2() {
-        
         return ResponseDataDto.builder()
                 .value1("문자열 데이터")
                 .value2(1010)
@@ -50,20 +45,20 @@ public class ResponseTestController {
     public Object getData3() {
 
         return ResponseDataDto.builder()
-                .value1("문자열 데이터")
-                .value2(1010)
+                .value1("문자열 데이터 2")
+                .value2(2020)
                 .value3(false)
                 .build();
     }
 
     @GetMapping("/api/v1/students")
-    public Object getStudentList() {
+    public Object getData4() {
 
         Map<String, Object> responseMap = new HashMap<String, Object>();
-        List<StudentResDto> students = new ArrayList<StudentResDto>();
+        List<StudentRespDto> students = new ArrayList<StudentRespDto>();
 
 
-        StudentResDto student1 = StudentResDto.builder()
+        StudentRespDto student1 = StudentRespDto.builder()
                 .studentCode(20220001)
                 .studentName("김준일")
                 .studentYear(2)
@@ -73,7 +68,7 @@ public class ResponseTestController {
 
         students.add(student1);
 
-        StudentResDto student2 = StudentResDto.builder()
+        StudentRespDto student2 = StudentRespDto.builder()
                 .studentCode(20220002)
                 .studentName("김준이")
                 .studentYear(2)
