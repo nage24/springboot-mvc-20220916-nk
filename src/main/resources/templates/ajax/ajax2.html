@@ -8,9 +8,8 @@
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
-    <script>
-
-        window.onload() = () => {
+<script>
+        window.onload = () => {
             load();
         }
 
@@ -24,37 +23,34 @@
                 type: "post",
                 url: "/api/v1/dto/post", // !
                 data: {
-                    "title": "request param 제목",
-                    "writer": "갱이",
+                    "title": "DTO 제목",
+                    "writer": "갱나",
                     "content": "내용을 입력합니다."
                 },
-                dataType: "json", // text / json 차이!
+                dataType: "json", // json / text 차이!
                 success: (response) => {
                     console.log(response);
                     appendData(response);
-                    
                 },
                 error: (error) => {
                     console.log(error);
                 }
 
-
             });
         }
 
-         function appendData(response) {
-
+        function appendData(response) {
             const body = document.querySelector("body");
 
-                    body.innerHTML = `
-                        <h2>${response.code}</h2>
-                        <h2>${response.msg}</h2>
-                        <h2>${request.data.title}</h2>
-                        <h2>${request.data.writer}</h2>
-                        <h2>${request.data.content}</h2>
-                    `;
+            body.innerHTML = `
+                <h2>${response.code}</h2>
+                <h2>${response.msg}</h2>
+                <h2>${response.data.title}</h2>
+                <h2>${response.data.writer}</h2>
+                <h2>${response.data.content}</h2>
+            `;
+        }
 
-         }
 
     </script>
 </body>

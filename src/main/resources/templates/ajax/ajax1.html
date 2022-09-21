@@ -8,10 +8,10 @@
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
-    <script>
-        alert("ajax1.html 파일 실행")
+<script>
+        alert("ajax1.html 파일 실행");
 
-        window.onload() = () => {
+        window.onload = () => {
             load();
         }
 
@@ -26,36 +26,33 @@
                 url: "/api/v1/rp/post",
                 data: {
                     "title": "request param 제목",
-                    "writer": "갱이",
+                    "writer": "갱나",
                     "content": "내용을 입력합니다."
                 },
-                dataType: "json", // text / json 차이!
+                dataType: "json",
                 success: (response) => {
                     console.log(response);
                     appendData(response);
-                    
                 },
                 error: (error) => {
                     console.log(error);
                 }
 
-
             });
         }
 
-         function appendData(response) {
-
+        function appendData(response) {
             const body = document.querySelector("body");
 
-                    body.innerHTML = `
-                        <h2>${response.code}</h2>
-                        <h2>${response.msg}</h2>
-                        <h2>${request.data.title}</h2>
-                        <h2>${request.data.writer}</h2>
-                        <h2>${request.data.content}</h2>
-                    `;
+            body.innerHTML = `
+                <h2>${response.code}</h2>
+                <h2>${response.msg}</h2>
+                <h2>${response.data.title}</h2>
+                <h2>${response.data.writer}</h2>
+                <h2>${response.data.content}</h2>
+            `;
+        }
 
-         }
 
     </script>
 </body>

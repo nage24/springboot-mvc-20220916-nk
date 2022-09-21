@@ -7,9 +7,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Controller
 public class AjaxTestController {
 
-    @GetMapping("/ajax1")
+    @GetMapping("/ajax1/{id}")
     public String loadAjax(@PathVariable int id) {
-        return "/ajax/ajax1" + id;
+
+        return "ajax/ajax" + id;
     }
 
 
