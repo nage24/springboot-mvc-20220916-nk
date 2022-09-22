@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <style>
+
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <table>
+
+            <thead>
+                <tr>
+                    <th>
+                        <h1>뉴스정보</h1>
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <th>
+                        <label for="title">제목</label>
+                    </th>
+                    <td>
+                        <input type="text" id="title">
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <label for="broadcasting-name">방송국명</label>
+                    </th>
+                    <td>
+                        <input type="text" id="broadcasting-name">
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <label for="broadcasting-name">첨부이미지</label>
+                    </th>
+                    <td>
+                        <!--- 파일, 이미지만 -->
+                        <form enctype="multipart/form-data">
+                            <input type="file" name="file" class="file-upload-input" accept="image/gif, image/png, image/jpeg, image/jpg">
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <label for="content">기사내용</label>
+                    </th>
+                    <td>
+                        <textarea id="content"></textarea>
+                    </td>
+                </tr>
+            </tbody>
+
+
+            <tfoot>
+                <tr>
+                    <th colspan="2">
+                        <button type="button" class="write-button">작성하기</button>
+                    </th>
+                </tr>
+            </tfoot>
+        </table>
+
+        <div class="preview">
+            <!-- 응답 데이터 미리보기 ... -->
+
+        </div>
+    </div>
+     <script>
+        const writeButton = document.querySelector(".write-button");
+        
+        const title = document.querySelector("#title");
+        const broadcastingName = document.querySelector("#broadcasting-name");
+        const fileInput = document.querySelector(".file-upload-input");
+        const content = document.querySelector("#content");
+
+        writeButton.onclick = () => {
+            if(confirm("전송합니까?")){
+                request();
+            }
+        }
+
+
+        function getFormData() {
+            const form = document.querySelector("form");
+
+            const formData = new FormData(form);
+
+            formData.append("title", title);
+            formData.append("broadcastingName", broadcastingName);
+            formData.append("fileInput", fileInput)
+            formData.append("content", content);
+
+            for(let pair of formData.entries()) {
+                console.log(`key: ${pair[0]}, value: ${pair[1]}`);
+            }
+
+            return formData;
+        }
+
+
+        function request() {
+            $.ajax({
+                async: false,
+                type: "post",
+                url: "/api/v1/news/post",
+
+                enctype: "multipart/form-data", 
+                contentType: false,
+                processData: false,
+
+                data: getFormData(),
+
+                dataType: "json", 
+
+                success: (response) => {
+                    console.log(response);
+                    appendData(response);
+                },
+                error: (error) => {
+                    console.log(error);
+                }
+
+            });
+        }
+
+
+        function appendData(response) {
+            const body = document.querySelector(".preview");
+
+            body.innerHTML += `
+                <h2>${response.title}</h2>
+                <h2>${response.broadcastingName}</h2>
+                <h2>${response.fileInput[0]}</h2>
+                <h2>${response.content}</h2>
+            `;
+        }
+
+
+        
+
+     </script>
+</body>
+</html>

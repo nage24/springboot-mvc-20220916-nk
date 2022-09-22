@@ -56,7 +56,7 @@ public class RequestTestController {
     }
 
     @PostMapping("/api/v1/json/post")
-    public ResponseEntity<?> addPost3(@RequestBody AddPostReqDto addPostReqDto) {
+    public ResponseEntity<?> addPost3(@RequestBody AddPostReqDto addPostReqDto) { // @RequestBody 를 꼭 달아주셔야 합니다.
 
         log.info("{}", addPostReqDto);
 
@@ -68,5 +68,6 @@ public class RequestTestController {
         log.info("삭제할 게시글 번호: ({})", id);
         return ResponseEntity.ok(new CMRespDto<>(1, "삭제 성공", id));
     }
+
 
 }
