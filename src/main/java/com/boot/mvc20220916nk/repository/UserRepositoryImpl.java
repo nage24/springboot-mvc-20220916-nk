@@ -19,10 +19,10 @@ public class UserRepositoryImpl implements UserRepository{ // ctrl + I 로 imple
 
             User user = User.builder()
                     .user_code(index)
-                    .user_id("ng" + index)
+                    .user_id("user" + index)
                     .user_name("1111")
-                    .user_password("갱나" + index)
-                    .user_email("ng" + index + "@")
+                    .user_password("user" + index)
+                    .user_email("user" + index + "@")
                     .build();
 
             userData.add(user);

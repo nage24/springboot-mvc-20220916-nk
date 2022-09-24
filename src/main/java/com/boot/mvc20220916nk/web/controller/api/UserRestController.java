@@ -40,7 +40,8 @@ public class UserRestController {
     public ResponseEntity<?> addUser(UserAddReqDto userAddReqDto) {
         int result = userRepository.save(userAddReqDto.toEntity());
         if(result == 0) {
-            return ResponseEntity.internalServerError().body("데이터 오류(Server)");
+            // return ResponseEntity.internalServerError().body("데이터 오류(Server)");
+            return ResponseEntity.badRequest().body("잘못된 요청");
         }
         return ResponseEntity.ok().body("사용자 추가 완료");
 

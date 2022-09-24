@@ -18,6 +18,11 @@ public class ResponseEntityController {
 
     @GetMapping("/api/v1/entity/data1")
     public ResponseEntity<?> getData() {
+        return new ResponseEntity<String>("ResponseEntity 응답", HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @GetMapping("/api/v1/entity/data2")
+    public ResponseEntity<?> getData2() {
         // return new ResponseEntity<String>(HttpStatus.BAD_REQUEST); // OK, INTERNAL_SERVER_ERROR ...
         // return new ResponseEntity<String>("ResponseEntity 응답", INTERNAL_SERVER_ERROR); // 응답 -> JSON 아니고 TEXT 로 날라감. body 가 실질적인 응답 데이터.
 
@@ -27,8 +32,8 @@ public class ResponseEntityController {
         headers.add("test-token2", UUID.randomUUID().toString());
         headers.add("test-token3", UUID.randomUUID().toString());
 
-        // return new ResponseEntity<String>("test", headers, HttpStatus.OK);
-        return new ResponseEntity<String>(headers, HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<String>(headers, HttpStatus.OK);
+        // return new ResponseEntity<String>(headers, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @GetMapping("/api/v1/entity/data3")
