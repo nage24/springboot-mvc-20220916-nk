@@ -81,7 +81,7 @@ public class ResponseTestController {
         // return students;         리스트를 보내면 ... -> Serialize ... 해서 ArrayList zero 오류가 뜸.
         // Json 은 Getter 가 없으면 못 들고 오기 때문에 StudentResDto 에 @Getter 어노테이션을 달면, 정상적으로 가져오는 걸 볼 수 있다.
 
-        responseMap.put("students1", students);
+        responseMap.put("students1", students); // Map 에 넣어서 키 값을 주어야 한다.
 
         // return students;
         return responseMap;

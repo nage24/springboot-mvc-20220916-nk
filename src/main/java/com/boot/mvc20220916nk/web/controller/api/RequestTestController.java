@@ -26,14 +26,14 @@ public class RequestTestController {
         map.put("writer", writer);
         map.put("content", content);
 
-        return ResponseEntity.ok(new CMRespDto(1, "게시글 작성 완료", map));
+        return ResponseEntity.ok(new CMRespDto<>(1, "게시글 작성 완료", map));
     }
     @PostMapping("/api/v1/dto/post")
     public ResponseEntity<?> addPost(AddPostReqDto addPostReqDto) {
 
         log.info("{}", addPostReqDto);
 
-        return ResponseEntity.ok(new CMRespDto(1, "게시글 작성 완료", addPostReqDto));
+        return ResponseEntity.ok(new CMRespDto<>(1, "게시글 작성 완료", addPostReqDto));
     }
 
     @PostMapping("/api/v1/file/post")
@@ -52,7 +52,7 @@ public class RequestTestController {
             fileNames.add(fileName3);
         }
 
-        return ResponseEntity.ok(new CMRespDto(1, "게시글 작성 완료", fileNames));
+        return ResponseEntity.ok(new CMRespDto<>(1, "게시글 작성 완료", fileNames));
     }
 
     @PostMapping("/api/v1/json/post")
@@ -60,7 +60,7 @@ public class RequestTestController {
 
         log.info("{}", addPostReqDto);
 
-        return ResponseEntity.ok(new CMRespDto(1, "Json으로 게시글 작성 완료", addPostReqDto));
+        return ResponseEntity.ok(new CMRespDto<>(1, "Json으로 게시글 작성 완료", addPostReqDto));
     }
 
     @DeleteMapping("/api/v1/post/{id}")
